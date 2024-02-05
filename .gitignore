@@ -1,3 +1,6 @@
 *.zip
 *.pickle
 *.hdf5
+*/expt9_stair_sdt/*
+*/expt18_replication/*
+*/expt19_control/*
