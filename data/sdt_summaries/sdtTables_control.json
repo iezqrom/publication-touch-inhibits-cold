@@ -1,0 +1,242 @@
+[
+    {
+        "notouch": {
+            "hits": 23,
+            "misses": 4,
+            "fas": 15,
+            "crs": 12
+        },
+        "touch": {
+            "hits": 20,
+            "misses": 7,
+            "fas": 17,
+            "crs": 10
+        },
+        "sound": {
+            "hits": 26,
+            "misses": 1,
+            "fas": 18,
+            "crs": 9
+        }
+    },
+    {
+        "notouch": {
+            "hits": 23,
+            "misses": 4,
+            "fas": 0,
+            "crs": 27
+        },
+        "touch": {
+            "hits": 24,
+            "misses": 4,
+            "fas": 0,
+            "crs": 28
+        },
+        "sound": {
+            "hits": 24,
+            "misses": 3,
+            "fas": 1,
+            "crs": 26
+        }
+    },
+    {
+        "notouch": {
+            "hits": 11,
+            "misses": 16,
+            "fas": 1,
+            "crs": 26
+        },
+        "touch": {
+            "hits": 14,
+            "misses": 13,
+            "fas": 3,
+            "crs": 24
+        },
+        "sound": {
+            "hits": 8,
+            "misses": 19,
+            "fas": 7,
+            "crs": 20
+        }
+    },
+    {
+        "notouch": {
+            "hits": 19,
+            "misses": 8,
+            "fas": 0,
+            "crs": 27
+        },
+        "touch": {
+            "hits": 16,
+            "misses": 11,
+            "fas": 2,
+            "crs": 25
+        },
+        "sound": {
+            "hits": 18,
+            "misses": 9,
+            "fas": 4,
+            "crs": 23
+        }
+    },
+    {
+        "notouch": {
+            "hits": 24,
+            "misses": 3,
+            "fas": 15,
+            "crs": 12
+        },
+        "touch": {
+            "hits": 23,
+            "misses": 4,
+            "fas": 16,
+            "crs": 11
+        },
+        "sound": {
+            "hits": 25,
+            "misses": 2,
+            "fas": 19,
+            "crs": 8
+        }
+    },
+    {
+        "notouch": {
+            "hits": 20,
+            "misses": 7,
+            "fas": 4,
+            "crs": 23
+        },
+        "touch": {
+            "hits": 20,
+            "misses": 7,
+            "fas": 5,
+            "crs": 22
+        },
+        "sound": {
+            "hits": 20,
+            "misses": 7,
+            "fas": 6,
+            "crs": 21
+        }
+    },
+    {
+        "notouch": {
+            "hits": 16,
+            "misses": 11,
+            "fas": 0,
+            "crs": 27
+        },
+        "touch": {
+            "hits": 15,
+            "misses": 12,
+            "fas": 1,
+            "crs": 26
+        },
+        "sound": {
+            "hits": 13,
+            "misses": 14,
+            "fas": 0,
+            "crs": 27
+        }
+    },
+    {
+        "notouch": {
+            "hits": 18,
+            "misses": 9,
+            "fas": 2,
+            "crs": 25
+        },
+        "touch": {
+            "hits": 22,
+            "misses": 5,
+            "fas": 11,
+            "crs": 16
+        },
+        "sound": {
+            "hits": 21,
+            "misses": 6,
+            "fas": 3,
+            "crs": 24
+        }
+    },
+    {
+        "notouch": {
+            "hits": 18,
+            "misses": 9,
+            "fas": 1,
+            "crs": 26
+        },
+        "touch": {
+            "hits": 18,
+            "misses": 9,
+            "fas": 0,
+            "crs": 27
+        },
+        "sound": {
+            "hits": 22,
+            "misses": 5,
+            "fas": 0,
+            "crs": 27
+        }
+    },
+    {
+        "notouch": {
+            "hits": 19,
+            "misses": 8,
+            "fas": 1,
+            "crs": 26
+        },
+        "touch": {
+            "hits": 25,
+            "misses": 2,
+            "fas": 6,
+            "crs": 21
+        },
+        "sound": {
+            "hits": 22,
+            "misses": 5,
+            "fas": 2,
+            "crs": 25
+        }
+    },
+    {
+        "notouch": {
+            "hits": 17,
+            "misses": 10,
+            "fas": 1,
+            "crs": 26
+        },
+        "touch": {
+            "hits": 17,
+            "misses": 10,
+            "fas": 1,
+            "crs": 26
+        },
+        "sound": {
+            "hits": 19,
+            "misses": 8,
+            "fas": 0,
+            "crs": 27
+        }
+    },
+    {
+        "notouch": {
+            "hits": 22,
+            "misses": 5,
+            "fas": 2,
+            "crs": 25
+        },
+        "touch": {
+            "hits": 20,
+            "misses": 7,
+            "fas": 1,
+            "crs": 26
+        },
+        "sound": {
+            "hits": 26,
+            "misses": 1,
+            "fas": 7,
+            "crs": 20
+        }
+    }
+]

@@ -1,32 +1,28 @@
 # %%
 import sys 
-sys.path.append("../")
+sys.path.append("../../")
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from saving_data import buildDict, appendDataDict
 import scipy
 from plotting import (
     plotParams,
     removeSpines,
     prettifySpinesTicks,
-    doubleSave,
-    saveStatsFigure,
     params_figure,
     colours,
-    meanSD,
     cohenD,
 )
 import os
-import csv
+
 from globals import data_path, figures_path
 import json
 
 plotParams()
 
 # %%
-sdt_results_folder = 'sdt_results/'
+sdt_results_folder = '/sdt_results/'
 sdt_results_path = data_path + sdt_results_folder
 
 # get all files in the sdt_results folder
