@@ -1,6 +1,6 @@
 # %%
 import sys 
-sys.path.append("../")
+sys.path.append("../../")
 
 import numpy as np
 import pandas as pd
@@ -26,7 +26,7 @@ import json
 plotParams()
 
 # %%
-sdt_results_folder = 'sdt_results/'
+sdt_results_folder = '/sdt_summaries/'
 sdt_results_path = data_path + sdt_results_folder
 
 # get all files in the sdt_results folder
@@ -84,8 +84,12 @@ removeSpines(ax)
 prettifySpinesTicks(ax)
 
 folder_path = figures_path + 'graphical_abstract/'
-plt.savefig(folder_path + 'all_dprimes_in_sem.png', bbox_inches='tight', dpi=300, transparent=True)
+# plt.savefig(folder_path + 'all_dprimes_in_sem.png', bbox_inches='tight', dpi=300, transparent=True)
 
+# %%
+# get the mean and std of the cold_notouch and cold_touch
+print(round(np.mean(all_values['cold_notouch']), 2), round(np.std(all_values['cold_notouch']), 2))
+print(round(np.mean(all_values['cold_touch']), 2), round(np.std(all_values['cold_touch']), 2))
 # %%
 cold_notouch = all_values['cold_notouch']
 cold_touch = all_values['cold_touch']
@@ -94,9 +98,9 @@ print(np.mean(cold_notouch), np.std(cold_notouch))
 print(np.mean(cold_touch), np.std(cold_touch))
 
 # t-test and cohen's d
-t_stat, p_val = scipy.stats.ttest_ind(cold_notouch, cold_touch)
-print(t_stat, p_val)
-print(cohenD(cold_notouch, cold_touch))
+t_stat, p_val = scipy.stats.ttest_rel(cold_notouch, cold_touch, alternative='greater')
+print(round(t_stat, 2), p_val)
+print(round(cohenD(cold_notouch, cold_touch), 2))
 # %%
 data_sdts = {}
 # get files that end with .json
