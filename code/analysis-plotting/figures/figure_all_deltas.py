@@ -5,7 +5,7 @@ sys.path.append("../../")
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import scipy
+from scipy import stats
 from plotting import (
     plotParams,
     removeSpines,
@@ -19,10 +19,10 @@ import os
 from globals import data_path, figures_path
 import json
 
-plotParams()
+plotParams(size = 40)
 
 # %%
-sdt_results_folder = '/sdt_results/'
+sdt_results_folder = '/sdt_summaries/'
 sdt_results_path = data_path + sdt_results_folder
 
 # get all files in the sdt_results folder
@@ -59,12 +59,13 @@ for key in data:
 ax.plot([1 - half_width_mean, 1 + half_width_mean], [np.mean(all_values['cold_notouch']), np.mean(all_values['cold_notouch'])], color=colours['cold'], lw=params_figure["width_lines"] + 5)
 ax.plot([2 - half_width_mean, 2 + half_width_mean], [np.mean(all_values['cold_touch']), np.mean(all_values['cold_touch'])], color=colours['cold_touch'], lw=params_figure["width_lines"] + 5)
 
-# add error bars
-ax.errorbar(1, np.mean(all_values['cold_notouch']), yerr=scipy.stats.sem(all_values['cold_notouch']), fmt='o', color=colours['cold'], lw=params_figure["width_lines"] - 2, capsize=10, capthick=7)
-ax.errorbar(2, np.mean(all_values['cold_touch']), yerr=scipy.stats.sem(all_values['cold_touch']), fmt='o', color=colours['cold_touch'], lw=params_figure["width_lines"] - 2, capsize=10, capthick=7)
+# add error bars of sem
+ax.errorbar(1, np.mean(all_values['cold_notouch']), yerr=np.std(all_values['cold_notouch'])/np.sqrt(len(all_values['cold_notouch'])), fmt='o', color=colours['cold'], lw=params_figure["width_lines"] - 4, capsize = 10, capthick = params_figure["width_lines"] - 4)
+ax.errorbar(2, np.mean(all_values['cold_touch']), yerr=np.std(all_values['cold_touch'])/np.sqrt(len(all_values['cold_touch'])), fmt='o', color=colours['cold_touch'], lw=params_figure["width_lines"] - 4, capsize = 10, capthick = params_figure["width_lines"] - 4)
 
 ax.set_ylabel("Sensitivity (d')", labelpad=params_figure["pad_size_label"])
 
+# uncomment the following lines to plot data points
 # for cold_notouch, cold_touch in zip(all_values['cold_notouch'], all_values['cold_touch']):
 #     ax.plot([1, 2], [cold_notouch, cold_touch], color = 'black', lw = params_figure["width_lines"] - 1, alpha = 0.1, zorder=0)
 
@@ -79,20 +80,20 @@ ax.set_xticklabels(['Cold only', 'Cold & touch'])
 removeSpines(ax)
 prettifySpinesTicks(ax)
 
-folder_path = figures_path + 'graphical_abstract/'
+folder_path = figures_path + '/figure_all_deltas/'
 plt.savefig(folder_path + 'all_dprimes_in_sem.png', bbox_inches='tight', dpi=300, transparent=True)
 
 # %%
 cold_notouch = all_values['cold_notouch']
 cold_touch = all_values['cold_touch']
 
-print(np.mean(cold_notouch), np.std(cold_notouch))
-print(np.mean(cold_touch), np.std(cold_touch))
+print('mean std sem', np.mean(cold_notouch), np.std(cold_notouch), stats.sem(cold_notouch))
+print('mean std sem', np.mean(cold_touch), np.std(cold_touch), stats.sem(cold_touch))
 
 # t-test and cohen's d
-t_stat, p_val = scipy.stats.ttest_ind(cold_notouch, cold_touch)
-print(t_stat, p_val)
-print(cohenD(cold_notouch, cold_touch))
+t_stat, p_val = stats.ttest_rel(cold_notouch, cold_touch, alternative='greater')
+print('t stat p-value', t_stat, p_val)
+print('cohen D', cohenD(cold_notouch, cold_touch))
 # %%
 data_sdts = {}
 # get files that end with .json
