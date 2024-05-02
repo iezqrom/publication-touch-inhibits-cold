@@ -1,0 +1,5 @@
+trial,delta_stimulation,response,listened,hypothesis,confidence,reaction_time,time_delay,stimulus_time,position,failed
+1,0,0,%HESITATION no ,%HESITATION no ,0.64,7.820152044296265,0.23529376642421038,3.5654032230377197,1,False
+2,1.5,1,were there any temperature change during the tone yes ,were there any temperature change during the tone yes ,0.81,9.5367431640625e-07,0.1605212442626378,1.5551888942718506,2,False
+3,1.5,1,yes ,yes ,0.99,2.6579749584198,0.18835374523441556,2.1117289066314697,7,False
+4,0,1,yes ,yes ,0.99,2.885737895965576,0.3155741151539855,6.43605899810791,9,False

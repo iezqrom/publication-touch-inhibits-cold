@@ -1,0 +1,6 @@
+subject,trial,delta_stimulation,delta_target,reversed,response,time_delay,stimulus_time,position,staircase,watson_listens,watson_hypothesises,watson_confidence,failed
+1,1,0.2,0.2,False,1,0.49893705955057543,6.848834991455078,9,2,yes ,yes ,0.66,False
+1,0,0.2,0.1,False,1,0.6490181554051985,11.967373132705688,4,2,yes ,yes ,0.91,True
+1,0,1.2,1.2,False,1,1.1461173275448686,11.968287944793701,3,1,yes ,yes ,0.82,True
+1,2,0.2,0.1,False,1,1.0337823981514818,11.392628908157349,9,2,yes ,yes ,0.89,False
+1,0,0.2,0.1,False,1,1.8134712226584515,11.967956066131592,4,2,yes ,yes ,0.85,True

@@ -1,9 +1,12 @@
 # %%
+import sys 
+sys.path.append("../")
+
 import numpy as np
 import pandas as pd
 import os
 
-from globals import to_analyse
+from globals import to_analyse_exp1, base_path, data_path
 
 def grabToAnalyse(data_path):
     # list all the folders in the data folder that start with ex_
@@ -31,10 +34,9 @@ def summary_staircase(data, n_staircase):
     delta_mean = np.mean(delta_stimulation_list)
     return delta_mean
 
-base_path = '/home/iezquer/Nextcloud/coding/phd/publication-touch-inhibits-cold/code'
 path_data_experiment = f'{base_path}/expt9_stair_sdt/data'
 
-save_data= '/home/iezquer/Nextcloud/coding/phd/publication-touch-inhibits-cold/data/staircase_summaries'
+save_data= f'{data_path}/staircase_summaries'
 
 # %% EXPERIMENT
 all_deltas = {}
@@ -43,7 +45,7 @@ all_deltas["delta_mean"] = []
 all_deltas['descending'] = []
 all_deltas['ascending'] = []
 
-for index, participant in enumerate(to_analyse):
+for index, participant in enumerate(to_analyse_exp1):
 
     data = pd.read_csv(f"{path_data_experiment}/test_{participant}/data/data_staircase_subj.csv")
     data = data.to_dict("list")
