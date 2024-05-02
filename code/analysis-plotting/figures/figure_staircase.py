@@ -1,4 +1,7 @@
 # %%
+import sys 
+sys.path.append("../../")
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,16 +10,17 @@ from plotting import (
     prettifySpinesTicks,
     removeSpines,
     params_figure,
-    colours
+    colours,
+    cohenD,
 )
+from globals import data_path, figures_path
 
 ultraviolet = "#654EA3"
 driedmoss = "#CDBC7E"
 
 plotParams(size=40)
 
-base_path = '/home/iezquer/Nextcloud/coding/phd/publication-touch-inhibits-cold/'
-path_summaries_staircase = f'{base_path}/data/staircase_summaries'
+path_summaries_staircase = f'{data_path}/staircase_summaries'
 
 file_names = ['experiment', 'control', 'replication']
 # %%
@@ -65,7 +69,24 @@ ax.set_yticks(np.arange(-2, 0.01, 0.2))
 ax.set_ylabel("Percent-correct point\n\n(ΔT $^\circ$C)", linespacing=0.6)
 
 plt.tight_layout()
-path_figures = 'figures/figure_staircase'
-plt.savefig(f'{base_path}/{path_figures}/all_staircases.png', dpi=300, transparent=True)
+plt.savefig(f'{figures_path}/figure_staircase/all_staircases.png', dpi=300, transparent=True)
+
+# %%
+from scipy import stats
+
+print('Experiment 1 vs 2')
+t_stat, p_val = stats.ttest_rel(all_deltas['experiment'], all_deltas['control'])
+print('t stat p-value', round(t_stat, 2), round(p_val, 2))
+print('cohen D', round(cohenD(all_deltas['experiment'], all_deltas['control']), 2))
+
+print('Experiment 1 vs 3')
+t_stat, p_val = stats.ttest_rel(all_deltas['experiment'], all_deltas['replication'])
+print('t stat p-value', round(t_stat, 2), round(p_val, 2))
+print('cohen D', round(cohenD(all_deltas['experiment'], all_deltas['replication']), 2))
+
+print('Experiment 2 vs 3')
+t_stat, p_val = stats.ttest_rel(all_deltas['replication'], all_deltas['control'])
+print('t stat p-value', round(t_stat, 2), round(p_val, 2))
+print('cohen D', round(cohenD(all_deltas['replication'], all_deltas['control']), 2))
 
 # %%

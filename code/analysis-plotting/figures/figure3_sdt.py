@@ -5,6 +5,7 @@ sys.path.append("../../")
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import scipy
 from plotting import (
     plotParams,
     removeSpines,
@@ -22,6 +23,8 @@ params_figure['alpha'] = 0.2
 # %%
 sdt_results_folder = '/sdt_summaries/'
 sdt_results_path = data_path + sdt_results_folder
+
+figure_folder_name = 'figure3_sdts'
 
 # get all files in the sdt_results folder
 sdt_results_files = os.listdir(sdt_results_path)
@@ -92,7 +95,7 @@ ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5])
 plt.tight_layout()
 name = "d_prime"
 plt.tight_layout()
-plt.savefig(f'{figures_path}/figure3_dprime/{experiment_name}_{name}.png', dpi=300, transparent=True)
+plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 # %%
 mean_notouch = data_experiment['cresponse'][data_experiment['touch'] == 0].mean()
@@ -151,7 +154,7 @@ ax.set_yticks([-1.5, -1, -0.5, 0, 0.5, 1, 1.5])
 plt.tight_layout()
 name = "c_bias"
 plt.tight_layout()
-plt.savefig(f'{figures_path}/figure3_dprime/{experiment_name}_{name}.png', dpi=300, transparent=True)
+plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 # %% EXPERIMENT 2
 experiment_name = 'df_replication_c'
@@ -210,7 +213,7 @@ ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5])
 
 plt.tight_layout()
 name = "d_prime"
-plt.savefig(f'{figures_path}/figure3_dprime/{experiment_name}_{name}.png', dpi=300, transparent=True)
+plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 # %%
 mean_notouch = data_experiment['cresponse'][data_experiment['touch'] == 0].mean()
@@ -268,7 +271,7 @@ ax.set_yticks([-1.5, -1, -0.5, 0, 0.5, 1, 1.5])
 
 plt.tight_layout()
 name = "c_bias"
-plt.savefig(f'{figures_path}/figure3_dprime/{experiment_name}_{name}.png', dpi=300, transparent=True)
+plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 # %% EXPERIMENT 3
 experiment_name = 'df_control'
@@ -351,7 +354,7 @@ ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5])
 
 plt.tight_layout()
 name = "d_prime"
-plt.savefig(f'{figures_path}/figure3_dprime/{experiment_name}_{name}.png', dpi=300, transparent=True)
+plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 
 # %%
@@ -432,6 +435,35 @@ ax.set_yticks([-1.5, -1, -0.5, 0, 0.5, 1, 1.5])
 
 plt.tight_layout()
 name = "c_bias"
-plt.savefig(f'{figures_path}/figure3_dprime/{experiment_name}_{name}.png', dpi=300, transparent=True)
+plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 # %%
+
+d_prime_replication_cold_alone = data['df_control']['dprime'][data['df_control']['touch'] == 0].to_numpy()
+d_prime_replication_cold_touch = data['df_control']['dprime'][data['df_control']['touch'] == 1].to_numpy()
+d_prime_replication_cold_sound = data['df_control']['dprime'][data['df_control']['touch'] == 2].to_numpy()
+
+# print(data['df_replication_c'])
+
+print(np.mean(d_prime_replication_cold_sound))
+print(np.mean(d_prime_replication_cold_touch))
+print(np.mean(d_prime_replication_cold_alone))
+
+res = scipy.stats.dunnett(d_prime_replication_cold_sound, d_prime_replication_cold_touch, control=d_prime_replication_cold_alone, alternative='less')
+
+print(res.statistic)
+print(res.pvalue)
+# %%
+from scipy.stats import ttest_rel
+from statsmodels.stats.multitest import multipletests
+
+# Perform paired t-tests
+t_stat1, p_val1 = ttest_rel(d_prime_replication_cold_alone, d_prime_replication_cold_sound)
+t_stat2, p_val2 = ttest_rel(d_prime_replication_cold_alone, d_prime_replication_cold_touch)
+
+# Adjust for multiple comparisons
+p_adjusted = multipletests([p_val1, p_val2], method='holm', alpha=0.05)
+print(p_adjusted)
+
+print("Control vs Manipulation 1: t-statistic = {:.3f}, p-value = {:.3f}".format(t_stat1, p_adjusted[1][0]))
+print("Control vs Manipulation 2: t-statistic = {:.3f}, p-value = {:.3f}".format(t_stat2, p_adjusted[1][1]))
