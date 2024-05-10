@@ -48,7 +48,8 @@ for n_exp, exp in enumerate(data.keys()):
 
 
 # %%
-
+counter = 0
+counter_fas = 0
 for n_exp, exp in enumerate(data.keys()):
     data[exp]['failed_counts'] = []
     for folder in data[exp]['to_analyse']:
@@ -58,7 +59,7 @@ for n_exp, exp in enumerate(data.keys()):
         ### SUBJECT
         success_rows = table_data[table_data["failed"] == False]
 
-        print(folder)
+        # print(folder)
 
         # print(success_rows)
         present_yesnt, present_nont, absent_yesnt, absent_nont = tableTosdtDoble(success_rows, 0, name_response = data[exp]['response'], name_stimulus = data[exp]['target'], name_interactor = data[exp]['interactor'])
@@ -112,11 +113,29 @@ for n_exp, exp in enumerate(data.keys()):
         sdts["notouch"] = SDTloglinear(
             present_notouch[0], present_notouch[1], absent_notouch[0], absent_notouch[1]
         )
-        print(present_notouch[0], present_notouch[1])
+        
         sdts["touch"] = SDTloglinear(
             present_touch[0], present_touch[1], absent_touch[0], absent_touch[1]
         )
-        print(present_touch[0], present_touch[1])
-# %%
 
+        counter += 1
+        total = present_notouch[0] + present_notouch[1]
+        
+        if present_notouch[0] == 0 or present_touch[0] == 0 or absent_notouch[0] == 0 or absent_touch[0] == 0:
+            print("One or more values are 0.")
+            print(f"hit notouch: {present_notouch[0]}")
+            print(f"hit touch: {present_touch[0]}")
+            print(f"fa notouch: {absent_notouch[0]}")
+            print(f"fa touch: {absent_touch[0]}")
+            counter_fas += 1
+        elif present_notouch[0] == total or present_touch[0] == total or absent_notouch[0] == total or absent_touch[0] == total:
+            print("One or more values are 1.")
+            # print the value that is 1
+        else:
+            continue
+
+# %%
+counter
+# %%
+counter_fas
 # %%
