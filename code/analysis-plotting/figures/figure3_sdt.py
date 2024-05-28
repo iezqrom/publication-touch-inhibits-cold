@@ -40,7 +40,7 @@ for file in sdt_results_files:
 # %% EXPERIMENT 1
 experiment_name = 'df_experiment'
 data_experiment = data[experiment_name]
-
+params_figure['alpha'] = 0.5
 mean_notouch = data_experiment['dprime'][data_experiment['touch'] == 0].mean()
 mean_touch = data_experiment['dprime'][data_experiment['touch'] == 1].mean()
 
