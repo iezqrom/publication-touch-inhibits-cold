@@ -1,0 +1,3 @@
+trial,interactor,cooling,response,time_delay,reaction_time,stimulus_time,position,failed,n_block,within_block_counter
+1,1,0,0,0.2719148235282168,0.7083489894866943,4.480028867721558,7,False,1,1
+2,1,1,1,0.33094330483392004,0.7790820598602295,1.0799832344055176,6,False,1,2

@@ -1,0 +1,5 @@
+trial,delta_stimulation,response,listened,hypothesis,confidence,reaction_time,time_delay,stimulus_time,position,failed
+1,0,0,sure change during the tone no ,sure change during the tone no ,0.71,0.9926741123199463,0.19546394633577516,2.902211904525757,2,False
+2,1.5,1,yes ,yes ,0.99,2.6370179653167725,0.2524589915353289,3.9584012031555176,9,False
+3,1.5,1,yes ,yes ,0.99,3.328552722930908,0.38564256731442126,7.020981073379517,5,False
+4,0,0,no ,no ,0.94,2.698806047439575,0.16432834799145318,0.8152198791503906,3,False
