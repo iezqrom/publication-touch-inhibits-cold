@@ -1,3 +1,8 @@
 *.zip
 *.pickle
 *.hdf5
+*.py
+*.png
+*.txt
+*.pdf
+*.jpg

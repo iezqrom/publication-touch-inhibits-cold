@@ -1,7 +1,6 @@
 # Touch inhibits cold: non-contact cooling reveals a novel thermotactile gating mechanism :snowflake::cold_face::call_me_hand:
-Version in journal:
 
-Versions in Biorxiv: [version 1](https://www.biorxiv.org/content/10.1101/2024.08.06.606653v1)
+Versions in Biorxiv: [v1](https://www.biorxiv.org/content/10.1101/2024.08.06.606653v1)
 
 Some data is in the [data/ folder](data/). All data can be found in this [OSF repository](https://osf.io/sv6eu/).
 

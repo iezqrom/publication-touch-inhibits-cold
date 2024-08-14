@@ -1,1 +1,1 @@
-Find all data in
+The lightweight data is in this folder. This includes all the csv files created during each experimental session with each participant. The videos and figures created for each participant are in this [OSF repository](https://osf.io/sv6eu/).

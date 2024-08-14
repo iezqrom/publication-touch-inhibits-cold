@@ -1,7 +1,8 @@
 *.zip
 *.pickle
 *.hdf5
-*/expt9_stair_sdt/
-*/expt18_replication/
-*/expt19_control/
+*/experiment1/
+*/experiment2/
+*/experiment3/
 *__pycache__/
+*dummy.py
