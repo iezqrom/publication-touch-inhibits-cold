@@ -17,7 +17,7 @@ import os
 
 from globals import data_path, figures_path
 
-# plotParams(size=40)
+plotParams(size=40)
 # params_figure['alpha'] = 0.2
 
 # %%
@@ -358,14 +358,6 @@ plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png',
 
 # print(data['df_replication_c'])
 
-<<<<<<< HEAD
-print(np.mean(d_prime_replication_cold_sound))
-print(np.mean(d_prime_replication_cold_touch))
-print(np.mean(d_prime_replication_cold_alone))
-
-res = scipy.stats.dunnett(d_prime_replication_cold_sound, d_prime_replication_cold_touch, control=d_prime_replication_cold_alone, alternative='less')
-
-=======
 # %%
 fig, ax = plt.subplots(figsize=(10, 10))
 
@@ -460,7 +452,6 @@ print(np.mean(d_prime_replication_cold_alone))
 
 res = scipy.stats.dunnett(d_prime_replication_cold_sound, d_prime_replication_cold_touch, control=d_prime_replication_cold_alone, alternative='less')
 
->>>>>>> 8461962d4d9ea8c2de43cb85a3d6e8f629d1d00a
 print(res.statistic)
 print(res.pvalue)
 # %%

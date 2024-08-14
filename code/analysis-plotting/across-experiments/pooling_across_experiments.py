@@ -4,20 +4,13 @@ sys.path.append("../../")
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from scipy import stats
 from plotting import (
-    plotParams,
-    removeSpines,
-    prettifySpinesTicks,
-    params_figure,
-    colours,
     cohenD,
 )
 import os
 
-from globals import data_path, figures_path
-import json
+from globals import data_path
 
 # %%
 sdt_results_folder = '/sdt_summaries/'
@@ -29,10 +22,9 @@ sdt_results_files = os.listdir(sdt_results_path)
 # %%
 # iterate through all files and extract the data
 data = {}
-for file in sdt_results_files:
-    if file.endswith('.csv'):
-        name_key = file.split('.')[0]
-        data[name_key] = pd.read_csv(sdt_results_path + file)
+experiments = ['experiment1', 'experiment2', 'experiment3']
+for experiment in experiments:
+    data[experiment] = pd.read_csv(sdt_results_path + 'df_' + experiment + '.csv')
 
 all_d_primes = {'cold_touch': [], 'cold_notouch': []}
 all_response_biases = {'cold_touch': [], 'cold_notouch': []}
