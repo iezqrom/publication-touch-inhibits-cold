@@ -2,7 +2,7 @@ import socket
 
 hostname = socket.gethostname()
 if hostname == 'quehaceres':
-    base_path = '/home/ivan/Documents/aaa_online_stuff/coding/phd/publication-touch-inhibits-cold'
+    base_path = '/home/iezqrom/Documents/coding/phd/publication-touch-inhibits-cold/'
 elif hostname == 'poulet05':
     base_path = '/home/iezquer/Documents/coding/phd/publication-touch-inhibits-cold'
     videos_path = '/media/iezquer/ivan_lab/phd'

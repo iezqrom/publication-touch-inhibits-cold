@@ -38,7 +38,7 @@ for file in sdt_results_files:
         data[name_key] = pd.read_csv(sdt_results_path + file)
 
 # %% EXPERIMENT 1
-experiment_name = 'df_experiment'
+experiment_name = 'df_experiment1'
 data_experiment = data[experiment_name]
 params_figure['alpha'] = 0.5
 mean_notouch = data_experiment['dprime'][data_experiment['touch'] == 0].mean()
@@ -141,7 +141,7 @@ ax.scatter(
 removeSpines(ax)
 prettifySpinesTicks(ax)
 
-ax.set_ylabel("Bias (C)", labelpad=params_figure['pad_size_label'])
+ax.set_ylabel("Response bias (C)", labelpad=params_figure['pad_size_label'])
 
 ax.axhline(y=0, color="grey", alpha=0.5, linestyle = "--", lw = params_figure["width_lines"] - params_figure["adjust_parti_line"])
 
@@ -157,7 +157,7 @@ plt.tight_layout()
 plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 # %% EXPERIMENT 2
-experiment_name = 'df_replication_c'
+experiment_name = 'df_experiment2'
 data_experiment = data[experiment_name]
 
 mean_notouch = data_experiment['dprime'][data_experiment['touch'] == 0].mean()
@@ -259,7 +259,7 @@ ax.scatter(
 removeSpines(ax)
 prettifySpinesTicks(ax)
 
-ax.set_ylabel("Bias (C)", labelpad=params_figure['pad_size_label'])
+ax.set_ylabel("Response bias (C)", labelpad=params_figure['pad_size_label'])
 
 ax.axhline(y=0, color="grey", alpha=0.5, linestyle = "--", lw = params_figure["width_lines"] - params_figure["adjust_parti_line"])
 
@@ -274,13 +274,12 @@ name = "c_bias"
 plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png', dpi=300, transparent=True)
 
 # %% EXPERIMENT 3
-experiment_name = 'df_control'
+experiment_name = 'df_experiment3'
 data_experiment = data[experiment_name]
 
 mean_notouch = data_experiment['dprime'][data_experiment['touch'] == 0].mean()
 mean_touch = data_experiment['dprime'][data_experiment['touch'] == 1].mean()
 mean_sound = data_experiment['dprime'][data_experiment['touch'] == 2].mean()
-
 
 fig, ax = plt.subplots(figsize=(10, 10))
 
@@ -424,7 +423,7 @@ ax.scatter(
 removeSpines(ax)
 prettifySpinesTicks(ax)
 
-ax.set_ylabel("Bias (C)", labelpad=params_figure['pad_size_label'])
+ax.set_ylabel("Response bias (C)", labelpad=params_figure['pad_size_label'])
 
 ax.axhline(y=0, color="grey", alpha=0.5, linestyle = "--", lw = params_figure["width_lines"] - params_figure["adjust_parti_line"])
 
@@ -450,21 +449,11 @@ print(np.mean(d_prime_replication_cold_sound))
 print(np.mean(d_prime_replication_cold_touch))
 print(np.mean(d_prime_replication_cold_alone))
 
-res = scipy.stats.dunnett(d_prime_replication_cold_sound, d_prime_replication_cold_touch, control=d_prime_replication_cold_alone, alternative='less')
 
-print(res.statistic)
-print(res.pvalue)
 # %%
 from scipy.stats import ttest_rel
-from statsmodels.stats.multitest import multipletests
 
 # Perform paired t-tests
 t_stat1, p_val1 = ttest_rel(d_prime_replication_cold_alone, d_prime_replication_cold_sound)
 t_stat2, p_val2 = ttest_rel(d_prime_replication_cold_alone, d_prime_replication_cold_touch)
 
-# Adjust for multiple comparisons
-p_adjusted = multipletests([p_val1, p_val2], method='holm', alpha=0.05)
-print(p_adjusted)
-
-print("Control vs Manipulation 1: t-statistic = {:.3f}, p-value = {:.3f}".format(t_stat1, p_adjusted[1][0]))
-print("Control vs Manipulation 2: t-statistic = {:.3f}, p-value = {:.3f}".format(t_stat2, p_adjusted[1][1]))
