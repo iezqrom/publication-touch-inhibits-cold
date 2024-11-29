@@ -64,7 +64,7 @@ print('response bias mean std sem cold & touch', np.mean(response_bias_touch), n
 print('response bias mean std sem diff', np.mean(diff_response_bias), np.std(diff_response_bias), stats.sem(diff_response_bias))
 
 # t-test and cohen's d
-t_stat, p_val = stats.ttest_rel(response_bias_notouch, response_bias_touch, alternative='greater')
+t_stat, p_val = stats.ttest_rel(response_bias_notouch, response_bias_touch)
 print('t stat p-value', t_stat, p_val)
 print('cohen D', cohenD(response_bias_notouch, response_bias_touch))
 
@@ -170,47 +170,16 @@ results_df = results_df.round(2)
 results_df
 
 # %%
-# Variance tests for touch = 0 between concatenated data and Experiment 3
-levene_dprime_touch_0 = stats.levene(dprime_touch_0_concat, dprime_touch_0_exp3)
-levene_cresponse_touch_0 = stats.levene(cresponse_touch_0_concat, cresponse_touch_0_exp3)
-
-# Variance tests for touch = 1 between concatenated data and Experiment 3
-levene_dprime_touch_1 = stats.levene(dprime_touch_1_concat, dprime_touch_1_exp3)
-levene_cresponse_touch_1 = stats.levene(cresponse_touch_1_concat, cresponse_touch_1_exp3)
-
-# Compile variance test results into a DataFrame
-variance_test_results = {
-    "Comparison": [
-        "dprime variance (touch=0)", 
-        "cresponse variance (touch=0)", 
-        "dprime variance (touch=1)", 
-        "cresponse variance (touch=1)"
-    ],
-    "Levene t-statistic": [
-        levene_dprime_touch_0.statistic, 
-        levene_cresponse_touch_0.statistic, 
-        levene_dprime_touch_1.statistic, 
-        levene_cresponse_touch_1.statistic
-    ],
-    "Levene p-value": [
-        levene_dprime_touch_0.pvalue, 
-        levene_cresponse_touch_0.pvalue, 
-        levene_dprime_touch_1.pvalue, 
-        levene_cresponse_touch_1.pvalue
-    ]
-}
-
-# Convert to DataFrame and round to two decimal places
-variance_results_df = pd.DataFrame(variance_test_results).round(2)
-
-variance_results_df
-
-# %%
 def welch_dof(x,y):
-        dof = (x.var()/x.size + y.var()/y.size)**2 / ((x.var()/x.size)**2 / (x.size-1) + (y.var()/y.size)**2 / (y.size-1))
-        print(f"Welch-Satterthwaite Degrees of Freedom= {dof:.4f}")
-    
-welch_dof(dprime_touch_0_concat, dprime_touch_0_exp3)
+    dof = (x.var()/x.size + y.var()/y.size)**2 / ((x.var()/x.size)**2 / (x.size-1) + (y.var()/y.size)**2 / (y.size-1))
+    print(f"Welch-Satterthwaite Degrees of Freedom= {dof:.4f}")
+    return dof
+
+value = welch_dof(dprime_touch_0_concat, dprime_touch_0_exp3)
+
+from fractions import Fraction
+Fraction(value).limit_denominator(1000)
+
 
 # %%
 # Calculating the difference in means and standard deviations for dprime in "Cold" (touch=0) between the concatenated data (Experiments 1 and 2) and Experiment 3

@@ -439,9 +439,9 @@ plt.savefig(f'{figures_path}/{figure_folder_name}/{experiment_name}_{name}.png',
 
 # %%
 
-d_prime_replication_cold_alone = data['df_control']['dprime'][data['df_control']['touch'] == 0].to_numpy()
-d_prime_replication_cold_touch = data['df_control']['dprime'][data['df_control']['touch'] == 1].to_numpy()
-d_prime_replication_cold_sound = data['df_control']['dprime'][data['df_control']['touch'] == 2].to_numpy()
+d_prime_replication_cold_alone = data['df_experiment3']['dprime'][data['df_experiment3']['touch'] == 0].to_numpy()
+d_prime_replication_cold_touch = data['df_experiment3']['dprime'][data['df_experiment3']['touch'] == 1].to_numpy()
+d_prime_replication_cold_sound = data['df_experiment3']['dprime'][data['df_experiment3']['touch'] == 2].to_numpy()
 
 # print(data['df_replication_c'])
 
@@ -454,6 +454,18 @@ print(np.mean(d_prime_replication_cold_alone))
 from scipy.stats import ttest_rel
 
 # Perform paired t-tests
+t_stat2, p_val2 = ttest_rel(d_prime_replication_cold_alone, d_prime_replication_cold_touch, alternative = "greater")
 t_stat1, p_val1 = ttest_rel(d_prime_replication_cold_alone, d_prime_replication_cold_sound)
-t_stat2, p_val2 = ttest_rel(d_prime_replication_cold_alone, d_prime_replication_cold_touch)
 
+print("Cold alone vs Cold touch")
+print(t_stat2, p_val2)
+
+print("--------------------------------")
+print("Cold alone vs Cold sound")
+print(t_stat1, p_val1)
+
+from plotting import cohenD
+
+cohenD(d_prime_replication_cold_alone, d_prime_replication_cold_sound)
+
+# %%
