@@ -20,3 +20,12 @@ Skin stimuli reach the brain via multiple neural channels specific for different
 - Devices: MacBook Pro (13-inch, 2019, Two Thunderbolt 3 ports) & Arduino Uno
 - Operating system: macOS Monterey Version 12.4
 - Programming languages: Python 3.8.6 & Arduino 1.8.19
+
+This repository is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). For more details, see the LICENSE file.
+
+Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
+[![CC BY 4.0][cc-by-image]][cc-by]
+
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
