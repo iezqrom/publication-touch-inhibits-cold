@@ -1,4 +1,4 @@
-# Touch inhibits cold: non-contact cooling reveals a novel thermotactile gating mechanism :snowflake::cold_face::call_me_hand:
+# Touch inhibits cold: non-contact cooling suggests a thermotactile gating mechanism :snowflake::cold_face::call_me_hand:
 
 Versions in Biorxiv: [v1](https://www.biorxiv.org/content/10.1101/2024.08.06.606653v1)
 
